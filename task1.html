@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>耀耀学院任务一</title>
+	<style type="text/css">
+		.container{
+			width: 600px;
+			height: 100px;
+			margin: 100px auto;
+			text-align: center;
+			position: relative;
+		}
+		#text{
+			width:350px;
+			height:40px;
+			border:2px solid #B5B5B5;
+			border-radius: 10px;
+			margin:0 20px 0 40px;
+			padding: 5px;
+			font-size: 20px;
+			outline: medium;/*去除点击后的外边框*/
+		}
+		#verify{
+			width: 80px;
+			height: 50px;
+			background: #6495ed;
+			border-radius: 8px;
+			color: #fff;
+			font-size: 18px;
+			outline: medium;/*去除点击后的外边框*/
+		}
+		#tip{
+			margin-left: -200px;
+			margin-top: 10px;
+			color: #B5B5B5;
+			text-align: left: 
+		}
+	</style>
+	<script type="text/javascript">
+		var verify=document.getElementById('verify');
+		var tip=document.getElementById('tip');
+		verify.onclick=function(){
+			var text=document.getElementById('text');
+			if(text.value=""){
+				text.style.color='red';
+				text.style.border='2px solid red';
+				tip.innerHTML='姓名不能为空';
+			}else{
+				test(text.value);
+			}
+		}
+		function text(value){
+			var excn=/[^\x00-\xff]{1,}/g;
+			var exen=/\w{1,}/g;
+			var cn=excn.exec(value);
+			var en=exen.exec(value);
+			if(cn==null){
+				cn="";
+			}
+			if(en==null){
+				en="";
+			}
+			var len=cn.toString().length*2+en.toString().length;
+			var text=document.getElementById('text');
+			if(len>3&&len<17){
+				text.style.border='2px solid #90EE90';
+				tip.style.color='#90EE90';
+				tip.innerHTML='名称格式正确';
+			}else{
+				text.style.border='2px solid red';
+				tip.style.color='red';	
+				tip.innerHTML='长度为4~16个字符';
+			}
+		}	
+	</script>
+</head>
+<body>
+	<div class="container">
+		<span><b>名称</b></span>
+		<input type="text" name="" id="text">
+		<button id="verify">验证</button>
+		<div id="tip">必填，长度为4~16个字符</div>
+	</div>
+</body>
+</html>
+<!-- 在页面中实现一个输入框与按钮，要求点击验证按钮后，对输入框中内容进行格式校验，并在其下方显示校验结果
+校验规则：
+
+    1.字符数为4~16位
+    2.每个英文字母、数字、英文符号长度为1
+    3.每个汉字，中文符号长度为2
+
+ -->
+
