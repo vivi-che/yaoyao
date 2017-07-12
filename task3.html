@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>耀耀学院任务三</title>
+	<style type="text/css">
+		.container{
+			width: 250px;
+			height: 80px;
+			margin: 0 auto;
+			text-align: center;
+			padding-top: 150px;
+			position: relative;
+		}
+		.school{
+			position: absolute;
+			left: 17%;
+			bottom: 0;
+			display: block;
+		}
+		.not_school{
+			position: absolute;
+			bottom: 0;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<input type="radio" name="vocation" value="在校生" id="student" checked>
+		<label for="student">在校生</label>
+		<input type="radio" name="vocation" value="非在校生" id="not_student">
+		<label for="not_student">非在校生</label>
+	
+
+		<!-- 在校生模块 -->
+		<div class="school">
+			<b>学校</b>
+			<select id="city_name">
+				<option>北京</option>
+				<option>上海</option>
+				<option>深圳</option>
+			</select>
+			<select id="school_name">
+				<option>北京大学</option>
+				<option>清华大学</option>
+				<option>北京科技大学</option>
+			</select>
+		</div>
+
+
+		<!-- 非在校生模块 -->
+		<div class="not_school">
+			<b>就业单位</b>
+			<input type="text" name="">
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var school=document.getElementById('school');
+		var not_school=document.getElementById('not_school');
+		var school_name=document.getElementById('school_name');
+		var city_name=document.getElementById('city_name');
+
+		//默认值改变事件
+		school.onchange=function(){
+			school.style.display='none';
+			not_school.style.display='block';
+		}
+		not_school.onchange=function(){
+			school.style.display='block';
+			not_school.style.display='none';
+		}
+		city_name.onchange=function(){
+			select_school(city_name.value);
+		}
+		function select_school(city){
+			switch(city){
+				case '北京':school_name.add(new Option('北京大学'));
+							school_name.add(new Option('清华大学'));
+							school_name.add(new Option('北京科技大学'));
+							break;
+				case '上海':school_name.add(new Option('复旦大学'));
+							school_name.add(new Option('上海交通大学'));
+							school_name.add(new Option('同济大学'));
+							break;
+				case '深圳':school_name.add(new Option('中南大学'));
+							school_name.add(new Option('暨南大学'));
+							school_name.add(new Option('华南理工大学'));
+							break;
+			}
+		}
+	</script>
+</body>
+</html>
+<!-- 在页面中完成两个单选框，切换单选框的不同选项时下方显示的表单随之切换。
+当选择在校生时，出现两个select下拉菜单，一个选择城市，一个选择学校，当选择非在校生时，出一个文本输入框
+学校下拉菜单里的学校名单均为城市下拉菜单中所选的城市中的大学，当城市发生变化时，学校一起发生变化
+城市及学校的数据随意编造即可，无需真实完整 -->
